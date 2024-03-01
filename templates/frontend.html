@@ -1,0 +1,422 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Page</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+                margin: 0;
+                padding: 0;
+                font-size: larger;
+            }
+
+            .background-image {
+                position: fixed;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+                background-image: url('https://kilburnieangus.com.au/wp-content/uploads/2021/04/149134193-57aa84b05f9b58974a2c611a.jpg');
+                background-size: cover;
+                background-position: center;
+
+                
+                filter: blur(3px);
+                z-index: -1;
+            }
+
+            header {
+                background-color: #134478;
+                color: #ede6e6;
+                padding: 5px 2;
+                text-align:center;
+            }
+
+            .about-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                border-radius: 30px;
+                box-shadow: 0 0 20px rgba(244, 239, 239, 0.1);
+                backdrop-filter: blur(10px); 
+                background-color: rgba(242, 230, 230, 0.05); 
+                font-family: cursive;
+                font-size: 25px;
+            }
+            
+
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            p {
+                text-align: justify;
+                margin: 10px 0;
+            }
+
+            .button-container {
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            .button-container button {
+                text-align: center;
+                margin-top: 30px;
+                width: 140px;
+                height: 55px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 30px;
+                background-color: #0015ff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #f4e6e6;
+            }
+
+            footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #134478;
+                color: #ede6e6;
+                padding: 5px 2;
+                text-align: center;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            #result {
+                margin-top: 20px;
+                font-weight: bold;
+                color: white; /* Set the text color to white */
+            }
+
+            #accuracy {
+                margin-top: 20px;
+                font-weight: bold;
+                color: white; /* Set the text color to white */
+            }
+            
+            select {
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                background-color: rgb(242, 242, 243);
+                width: 230px;
+                height: 40px;
+            }
+
+            button.back, button.predict {
+                padding: 8px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+            }
+
+            .label-container {
+                font-weight: bold; 
+                color: #000000;
+                font-size: 25px;
+            }
+
+            .btn-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50px;
+            }
+            .btn-container button {
+                margin: 5px;
+                width: 140px;
+                height: 55px;
+                font-size: 30px;
+            }
+            
+            .form-row {
+                height: 100px;
+            }
+
+            #result, #accuracy {
+                text-align: center;
+                font-size: 35px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="background-image"></div>
+        <header>
+            <h1>About</h1>
+        </header>
+        <div id="about-estrus">
+            <div class="about-container">
+                <p>Estrus cycle detection in cows faces challenges such as silent heat, variability in estrus signs, and the impact of environmental factors.</p>
+
+                <p>The duration of estrus, technological limitations in detection methods, and the reliance on visual observation can also affect accuracy.</p>
+
+                <p>Machine learning (ML) can offer solutions to improve estrus cycle detection in cows by leveraging data-driven approaches.</p>
+
+                <p>ML algorithms can be trained on diverse datasets that include behavioral, physiological, and environmental variables to develop models capable of predicting estrus events more accurately. For instance, sensors and wearable devices can collect real-time data on activity levels, temperature, and other relevant parameters.</p>
+
+                <p>ML algorithms can analyze this data to identify patterns associated with estrus, enabling automated and continuous monitoring.</p>
+                
+                <p>The automated cow estrus detection system begins with the initiation point, where data is collected from cows using sensors such as temperature sensors, accelerometers, and wearable devices. The collected data is then wirelessly transmitted to a centralized system through a wireless module and microcontroller. In the data storage and processing stage, a cloud platform or server stores and manages the data, while analytics algorithms and machine learning models analyze patterns and indicators of cow estrus.</p>
+
+                <div class="button-container">
+                    <button class="js-detect">Detect</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hidden" id="form-container">
+            <form id="js-predictionform">
+                <div style="text-align: center;">
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="restlessness" class="label-container">Restlessness:</label>
+                        </div>
+                        <select id="restlessness" name="restlessness">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="standing_to_be_mounted" class="label-container">Standing to be mounted:</label>
+                        </div>
+                        <select id="standing_to_be_mounted" name="standing_to_be_mounted">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="clear_mucus" class="label-container">Presence of clear mucus:</label>
+                        </div>
+                        <select id="clear_mucus" name="clear_mucus">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="swelling_reddening_of_vulva" class="label-container">Swelling and reddening of vulva:</label>
+                        </div>
+                        <select id="swelling_reddening_of_vulva" name="swelling_reddening_of_vulva">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                        <label for="sniffing_nudging" class="label-container">Sniffing and Nudging:</label>
+                        </div>
+                        <select id="sniffing_nudging" name="sniffing_nudging">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="tail_flagging" class="label-container">Tail Flagging:</label>
+                        </div>
+                        <select id="tail_flagging" name="tail_flagging">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+                    <div class="form-row">
+                        <div class="label">
+                            <label for="mooing" class="label-container">Mooing:</label>
+                        </div>
+                        <select id="mooing" name="mooing">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select><br><br><br>
+                    </div>
+
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="predict">Predict</button>
+                    <button type="submit" class="js-back back">Back</button>
+                </div>
+            </form>
+            <div id="result"></div>
+            <div id="accuracy"></div>
+
+        </div>
+        <footer>
+            <p>&copy;Estrus cycle detection</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function displayPredictionForm() {
+                document.getElementById("about-estrus").style.display = "none";
+                document.getElementById("form-container").style.display = "block";
+                document.querySelector("header h1").textContent = "Estrus Cycle Detection";
+            }
+
+            function displayAbout() {
+                document.getElementById("about-estrus").style.display = "block";
+                document.getElementById("form-container").style.display = "none";
+                document.querySelector("header h1").textContent = "About";
+            }
+
+            function displayResults() {
+                document.getElementById("about-estrus").style.display = "block";
+                document.getElementById("form-container").style.display = "none";
+                document.querySelector("header h1").textContent = "About";
+            }
+
+            $('#js-predictionform').submit(calculateResult);
+
+            function calculateResult(event) {
+                event.preventDefault();
+
+                // Get values for all features
+                var restlessness = parseInt(document.getElementById('restlessness').value);
+                var standing_to_be_mounted = parseInt(document.getElementById('standing_to_be_mounted').value);
+                var clear_mucus = parseInt(document.getElementById('clear_mucus').value);
+                var swelling_reddening_of_vulva = parseInt(document.getElementById('swelling_reddening_of_vulva').value);
+                var sniffing_nudging = parseInt(document.getElementById('sniffing_nudging').value);
+                var tail_flagging = parseInt(document.getElementById('tail_flagging').value);
+                var mooing = parseInt(document.getElementById('mooing').value);
+
+                var formData = new FormData();
+                formData.append('restlessness', restlessness);
+                formData.append('standing_to_be_mounted', standing_to_be_mounted);
+                formData.append('clear_mucus', clear_mucus);
+                formData.append('swelling_reddening_of_vulva', swelling_reddening_of_vulva);
+                formData.append('sniffing_nudging', sniffing_nudging);
+                formData.append('tail_flagging', tail_flagging);
+                formData.append('mooing', mooing);
+
+                // Make a request to get the accuracy score
+            // Make a request to get the accuracy score
+            fetch('/get_accuracy', {
+                    method: 'GET',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('accuracy').innerHTML = `Overall accuracy of the model is: ${data.accuracy.toFixed(2)}%`;
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    document.getElementById('accuracy').innerHTML = 'Error occurred while fetching accuracy.';
+                });
+
+                // Make a request to get the prediction
+                fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var pred = data.prediction;
+                    var conf = data.confidence.toFixed(2) * 100;
+                    var message;
+                    if (pred === 1) {
+                        message = 'Prediction: In Estrus Cycle with '+conf+'% confidence';
+                    } else if (pred === 2) {
+                        message = 'The chances of the cow being in estrus is high. Please monitor on a daily basis.';
+                    } else {
+                        message = 'Prediction: Not in Estrus Cycle';
+                    }
+                    document.getElementById('result').innerHTML = message;
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    document.getElementById('result').innerHTML = 'Error occurred during prediction.';
+                });
+
+                return true;
+            }
+
+            // Add event listener to the button with class "js-detect"
+            document.querySelector(".js-detect").addEventListener("click", displayPredictionForm);
+            document.querySelector(".js-back").addEventListener("click", displayAbout);
+        </script>
+    </body>
+    </html>
