@@ -315,7 +315,7 @@
                 </div>
                 <div class="btn-container">
                     <button type="submit" class="predict">Predict</button>
-                    <button type="submit" class="js-back back">Back</button>
+                    <button onclick="refreshPage()" class="js-back back">Back</button>
                 </div>
             </form>
             <div id="result"></div>
@@ -346,6 +346,13 @@
             }
 
             $('#js-predictionform').submit(calculateResult);
+
+            
+            // JavaScript function to reload the page
+            function refreshPage() {
+                window.location.reload();
+            }
+
 
             function calculateResult(event) {
                 event.preventDefault();
